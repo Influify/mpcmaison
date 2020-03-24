@@ -18,8 +18,6 @@
     <ul>
     {% for variant in oreiller.variants %}
       {% if variant.title == taie_size %}
-        <h1 class="variant_title" style="">{{variant.title}}</h1>
-        <h1 class="variant_id" style="">{{variant.id}}</h1>
         <input id="taie_id" type="hidden" name="id" value="{{ variant.id }}" />
       {% endif %}
     {% endfor %}
@@ -28,50 +26,12 @@
   <input type="hidden" class="inputCounter taie_quantity" name="quantity" value="1" />
 
   <div class="productForm-block flex-center">
-      <button id="add_taie_btn" class=" ajax-submit " type="submit" name="checkout" data-handle="{{product.handle}}"><p>+ Ajouter </p><p id="quantity_btn"> 1 </p> taie d'oreiller <p class="size_btn"> 50x70  </p><p> ({{ oreiller.variants.first.price | money | strip_html }} l'oreiller) </p></button>
+      <a href="" style="" id="add_taie_btn" class=" ajax-submit " type="submit" name="checkout" data-handle="{{product.handle}}"><p>+ Ajouter </p><p id="quantity_btn"> 1 </p> <p>taie d'oreiller</p> <p class="size_btn"> 50x70  </p><p> ({{ oreiller.variants.first.price | money | strip_html }} l'oreiller) </p></a>
   </div>
 {% endform %}
 
-  {% for tag in product.tags %}
-    {% if tag contains "add_taie" %}
-      {% assign taie_size = variant.title %}
-      <div>Add Taie</div>
-      {% assign second_product = all_products["housse-oreiller-haute-protection"] %}
-      <h2>{{ product.title }}</h2>
-      {% for product_option in product.options_with_values %}
-        <label>
-          {{ product_option.name }}
-          {% for value in product_option.values %}
-            {% if value == taie_size %}
-              <h1>WINNER</h1>
-              {% form "product", second_product %}
-              <select name="id">
-                {% for variant in product.variants %}
-                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}  value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-                {% endfor %}
-              </select>
-
-                <input type="submit" value="Add to cart" />
-              {% endform %}
-
-              {% assign variable = value %}
-            {% endif %}
-          {% endfor %}
-        </label>
-      {% endfor %}
-      {% for variant in product.variants %}
-        <ul>
-          <li>{{ variant.title}}</li>
-        </ul>
-        {% for value in variant.values %}
-
-        {% endfor %}
-      {% endfor %}
-      <h3>{{ product.selected_variant }}</h3>
-      <h2>selected oreiller size : {{ taie_size }}</h2>
-      <h2>{{ all_products["housse-oreiller-haute-protection"].variants }}</h2>
-    {% endif %}
-  {% endfor %}
 
 
+<style>
 
+</style>
